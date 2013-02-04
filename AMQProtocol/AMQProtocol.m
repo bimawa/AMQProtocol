@@ -8,6 +8,9 @@
 
 #import "AMQProtocol.h"
 
-@implementation AMQProtocol
+@implementation AMQProtocol{
+
+}
+
 
 @end

@@ -9,14 +9,14 @@
 #import "amqp.h"
 
 #import "AMQPObject.h"
-
+#import "AMQPUtilities.h"
 @class AMQPChannel;
 
 @interface AMQPConnection : AMQPObject
 {
 	amqp_connection_state_t connection;
-	int socketFD;
-	
+	__block int socketFD;
+    AMQPUtilities *utilities;
 	unsigned int nextChannel;
 }
 @property (readonly) uint nextChannel_;
@@ -25,9 +25,9 @@
 - (id)init;
 - (void)dealloc;
 
-- (BOOL)connectToHost:(NSString*)host onPort:(int)port error:(NSError**)error;
-- (BOOL)loginAsUser:(NSString*)username withPasswort:(NSString*)password onVHost:(NSString*)vhost error:(NSError**)error;
-- (BOOL)disconnectError:(NSError**)error; // all channels have to be closed before closing the connection
+- (void)connectToHost:(NSString *)host onPort:(int)port error:(NSError**)error;
+- (void)loginAsUser:(NSString *)username withPasswort:(NSString *)password onVHost:(NSString *)vhost error:(NSError**)error;
+- (void)disconnectError:(NSError**)error; // all channels have to be closed before closing the connection
 
 - (BOOL)checkLastOperation:(NSString*)context;
 

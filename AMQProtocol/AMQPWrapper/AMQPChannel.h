@@ -17,13 +17,14 @@
 	@public
 	amqp_channel_t channel;
 	AMQPConnection *connection;
+    AMQPUtilities *utilities;
 }
 
 @property (readonly) amqp_channel_t internalChannel;
 @property (readonly, retain) AMQPConnection *connection;
 
 - (id)init;
-- (BOOL)openChannel:(unsigned int)theChannel onConnection:(AMQPConnection*)theConnection error:(NSError**)error;
+- (void)openChannel:(unsigned int)theChannel onConnection:(AMQPConnection *)theConnection error:(NSError**)error;
 - (void)close;
 +(void)closeChanelByNumber:(uint)channelNum connection:(AMQPConnection *)connect;
 @end

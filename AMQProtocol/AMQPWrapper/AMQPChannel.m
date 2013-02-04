@@ -18,8 +18,9 @@
 {
 	if(self = [super init])
 	{
-		channel = -1;
+		channel = (amqp_channel_t) -1;
 		connection = nil;
+        utilities = [AMQPUtilities new];
 	}
 	
 	return self;
@@ -28,24 +29,33 @@
     NSLog(@"Connection in Chanel?>>>>>>>>:%@ channel: %d", connection,channel);
 //    [self close];
 }*/
-- (BOOL)openChannel:(unsigned int)theChannel onConnection:(AMQPConnection*)theConnection error:(NSError **)error
+- (void)openChannel:(unsigned int)theChannel onConnection:(AMQPConnection *)theConnection error:(NSError **)error
 {
-	connection = theConnection;
-	channel = theChannel;
-    if (connection == nil) {
-        NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:[NSString stringWithFormat:@"Failed Connection is Lost"] forKey:NSLocalizedDescriptionKey];
-        *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-14 userInfo:errorDetail];
-        return false;
+    connection = theConnection;
+	channel = (amqp_channel_t) theChannel;
+    __block ERRORCODE isCompliete =ERRORCODE_NORESPONSE;
+    __block NSError *errorInformer=*error;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        amqp_channel_open(connection.internalConnection, channel);
+        if([connection checkLastOperation:@"Failed to open a channel"]){
+            NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+            [errorDetail setValue:@"Failed to open a channel" forKey:NSLocalizedDescriptionKey];
+            errorInformer = [NSError errorWithDomain:NSStringFromClass([self class]) code:-5 userInfo:errorDetail];
+            isCompliete =ERRORCODE_HASERROR;
+            return;
+        }
+        isCompliete =ERRORCODE_NORMAL;
+        return;
+    });
+    NSError *timerError=nil;
+    [utilities waitingRespondsInSec:1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:3 error:&timerError];
+    if (isCompliete==ERRORCODE_HASERROR){
+        if (errorInformer== nil){
+            *error=timerError;
+        }else{
+            *error=errorInformer;
+        }
     }
-	amqp_channel_open(connection.internalConnection, channel);
-	if([connection checkLastOperation:@"Failed to open a channel"]){
-		NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-		[errorDetail setValue:@"Failed to open a channel" forKey:NSLocalizedDescriptionKey];
-		*error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-5 userInfo:errorDetail];
-		return false;
-	}
-	return true;
 }
 - (void)close
 {

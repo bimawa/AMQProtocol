@@ -2,8 +2,8 @@
 //  AMQProtocolTests.h
 //  AMQProtocolTests
 //
-//  Created by Maksim Bunkow on 02/01/13.
-//  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
+//  Created by Maksim Bunkow on 01.02.13.
+//
 //
 
 #import <SenTestingKit/SenTestingKit.h>

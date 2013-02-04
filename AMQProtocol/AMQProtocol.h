@@ -15,7 +15,8 @@
 #import "AMQPConsumerThread.h"
 #import "AMQPMessage.h"
 #import "AMQPRPCCall.h"
-
+#import "AMQPObject.h"
 @interface AMQProtocol : NSObject
+
 
 @end

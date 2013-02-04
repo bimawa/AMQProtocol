@@ -7,49 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2634791916BBDEFC00DEE5A8 /* AMQPChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478F816BBDEFC00DEE5A8 /* AMQPChannel.m */; };
-		2634791A16BBDEFC00DEE5A8 /* AMQPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478FA16BBDEFC00DEE5A8 /* AMQPConnection.m */; };
-		2634791B16BBDEFC00DEE5A8 /* AMQPConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478FC16BBDEFC00DEE5A8 /* AMQPConsumer.m */; };
-		2634791C16BBDEFC00DEE5A8 /* AMQPConsumerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478FE16BBDEFC00DEE5A8 /* AMQPConsumerThread.m */; };
-		2634791D16BBDEFC00DEE5A8 /* AMQPExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790116BBDEFC00DEE5A8 /* AMQPExchange.m */; };
-		2634791E16BBDEFC00DEE5A8 /* AMQPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790316BBDEFC00DEE5A8 /* AMQPMessage.m */; };
-		2634791F16BBDEFC00DEE5A8 /* AMQPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790516BBDEFC00DEE5A8 /* AMQPObject.m */; };
-		2634792016BBDEFC00DEE5A8 /* AMQPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790716BBDEFC00DEE5A8 /* AMQPQueue.m */; };
-		2634792116BBDEFC00DEE5A8 /* AMQPRPCCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790916BBDEFC00DEE5A8 /* AMQPRPCCall.m */; };
-		2634792216BBDEFC00DEE5A8 /* amqp_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634790D16BBDEFC00DEE5A8 /* amqp_api.c */; };
-		2634792316BBDEFC00DEE5A8 /* amqp_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634790E16BBDEFC00DEE5A8 /* amqp_connection.c */; };
-		2634792416BBDEFC00DEE5A8 /* amqp_debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634790F16BBDEFC00DEE5A8 /* amqp_debug.c */; };
-		2634792516BBDEFC00DEE5A8 /* amqp_framing.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791016BBDEFC00DEE5A8 /* amqp_framing.c */; };
-		2634792616BBDEFC00DEE5A8 /* amqp_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791216BBDEFC00DEE5A8 /* amqp_mem.c */; };
-		2634792716BBDEFC00DEE5A8 /* amqp_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791416BBDEFC00DEE5A8 /* amqp_socket.c */; };
-		2634792816BBDEFC00DEE5A8 /* amqp_table.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791516BBDEFC00DEE5A8 /* amqp_table.c */; };
-		2634792916BBDEFC00DEE5A8 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791716BBDEFC00DEE5A8 /* socket.c */; };
-		2CE732FE87B8C9ADC3940E3C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CE730D549052E9AADDE35F9 /* InfoPlist.strings */; };
+		263AB63616BBE20A002FD970 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE73D83AF3FA52768CAE471 /* SenTestingKit.framework */; };
+		263AB64216BBE20A002FD970 /* AMQProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AB64116BBE20A002FD970 /* AMQProtocolTests.m */; };
+		263AB64D16BBE60B002FD970 /* AMQPChannel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 263478F716BBDEFC00DEE5A8 /* AMQPChannel.h */; };
+		263AB64E16BBE60B002FD970 /* AMQPConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 263478F916BBDEFC00DEE5A8 /* AMQPConnection.h */; };
+		263AB64F16BBE60B002FD970 /* AMQPConsumer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 263478FB16BBDEFC00DEE5A8 /* AMQPConsumer.h */; };
+		263AB65016BBE60B002FD970 /* AMQPConsumerThread.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 263478FD16BBDEFC00DEE5A8 /* AMQPConsumerThread.h */; };
+		263AB65116BBE60B002FD970 /* AMQPConsumerThreadDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 263478FF16BBDEFC00DEE5A8 /* AMQPConsumerThreadDelegate.h */; };
+		263AB65216BBE60B002FD970 /* AMQPExchange.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2634790016BBDEFC00DEE5A8 /* AMQPExchange.h */; };
+		263AB65316BBE60B002FD970 /* AMQPMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2634790216BBDEFC00DEE5A8 /* AMQPMessage.h */; };
+		263AB65416BBE60B002FD970 /* AMQPObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2634790416BBDEFC00DEE5A8 /* AMQPObject.h */; };
+		263AB65516BBE60B002FD970 /* AMQPQueue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2634790616BBDEFC00DEE5A8 /* AMQPQueue.h */; };
+		263AB65616BBE60B002FD970 /* AMQPRPCCall.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2634790816BBDEFC00DEE5A8 /* AMQPRPCCall.h */; };
+		263AB65716BBE64E002FD970 /* AMQPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478FA16BBDEFC00DEE5A8 /* AMQPConnection.m */; };
+		263AB65816BBE695002FD970 /* AMQPChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478F816BBDEFC00DEE5A8 /* AMQPChannel.m */; };
+		263AB65916BBE695002FD970 /* AMQPConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478FC16BBDEFC00DEE5A8 /* AMQPConsumer.m */; };
+		263AB65A16BBE695002FD970 /* AMQPConsumerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 263478FE16BBDEFC00DEE5A8 /* AMQPConsumerThread.m */; };
+		263AB65B16BBE695002FD970 /* AMQPExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790116BBDEFC00DEE5A8 /* AMQPExchange.m */; };
+		263AB65C16BBE695002FD970 /* AMQPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790316BBDEFC00DEE5A8 /* AMQPMessage.m */; };
+		263AB65D16BBE695002FD970 /* AMQPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790516BBDEFC00DEE5A8 /* AMQPObject.m */; };
+		263AB65E16BBE695002FD970 /* AMQPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790716BBDEFC00DEE5A8 /* AMQPQueue.m */; };
+		263AB65F16BBE695002FD970 /* AMQPRPCCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634790916BBDEFC00DEE5A8 /* AMQPRPCCall.m */; };
+		263AB66016BBE695002FD970 /* AMQProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE73F6FAB9043D1AFA9D036 /* AMQProtocol.m */; };
+		263AB66116BBE6A0002FD970 /* amqp_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634790D16BBDEFC00DEE5A8 /* amqp_api.c */; };
+		263AB66216BBE6A0002FD970 /* amqp_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634790E16BBDEFC00DEE5A8 /* amqp_connection.c */; };
+		263AB66316BBE6A0002FD970 /* amqp_debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634790F16BBDEFC00DEE5A8 /* amqp_debug.c */; };
+		263AB66416BBE6A0002FD970 /* amqp_framing.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791016BBDEFC00DEE5A8 /* amqp_framing.c */; };
+		263AB66516BBE6A0002FD970 /* amqp_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791216BBDEFC00DEE5A8 /* amqp_mem.c */; };
+		263AB66616BBE6A0002FD970 /* amqp_socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791416BBDEFC00DEE5A8 /* amqp_socket.c */; };
+		263AB66716BBE6A0002FD970 /* amqp_table.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791516BBDEFC00DEE5A8 /* amqp_table.c */; };
+		263AB66816BBE6A0002FD970 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 2634791716BBDEFC00DEE5A8 /* socket.c */; };
+		2CE7353F4085B7CF37EE2712 /* AMQPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE731364781A18723B90DF6 /* AMQPUtilities.m */; };
 		2CE738FE206C5BBC7D1DCFAD /* AMQProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CE73A1A1C55B0FE64341DB5 /* AMQProtocol.h */; };
-		2CE73ADE89CA7C1C05FD035F /* AMQProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE73F6FAB9043D1AFA9D036 /* AMQProtocol.m */; };
-		2CE73C7A80713CF127155575 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE73D83AF3FA52768CAE471 /* SenTestingKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2CE738F6345626642CC012D1 /* PBXContainerItemProxy */ = {
+		263AB64716BBE230002FD970 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CE7385B6D219DD6476BBC7A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2CE73D4FE25C40F838C50CA1;
 			remoteInfo = AMQProtocol;
 		};
+		265A58B116BF65720046907F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CE7385B6D219DD6476BBC7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 263AB63416BBE20A002FD970;
+			remoteInfo = AMQProtocolTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2CE738CD1F2DC5E24A38FE30 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				263AB64D16BBE60B002FD970 /* AMQPChannel.h in CopyFiles */,
+				263AB64E16BBE60B002FD970 /* AMQPConnection.h in CopyFiles */,
+				263AB64F16BBE60B002FD970 /* AMQPConsumer.h in CopyFiles */,
+				263AB65016BBE60B002FD970 /* AMQPConsumerThread.h in CopyFiles */,
+				263AB65116BBE60B002FD970 /* AMQPConsumerThreadDelegate.h in CopyFiles */,
+				263AB65216BBE60B002FD970 /* AMQPExchange.h in CopyFiles */,
+				263AB65316BBE60B002FD970 /* AMQPMessage.h in CopyFiles */,
+				263AB65416BBE60B002FD970 /* AMQPObject.h in CopyFiles */,
+				263AB65516BBE60B002FD970 /* AMQPQueue.h in CopyFiles */,
+				263AB65616BBE60B002FD970 /* AMQPRPCCall.h in CopyFiles */,
 				2CE738FE206C5BBC7D1DCFAD /* AMQProtocol.h in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -73,7 +101,6 @@
 		2634790716BBDEFC00DEE5A8 /* AMQPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPQueue.m; sourceTree = "<group>"; };
 		2634790816BBDEFC00DEE5A8 /* AMQPRPCCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPRPCCall.h; sourceTree = "<group>"; };
 		2634790916BBDEFC00DEE5A8 /* AMQPRPCCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPRPCCall.m; sourceTree = "<group>"; };
-		2634790A16BBDEFC00DEE5A8 /* AMQPWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPWrapper.h; sourceTree = "<group>"; };
 		2634790C16BBDEFC00DEE5A8 /* amqp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amqp.h; sourceTree = "<group>"; };
 		2634790D16BBDEFC00DEE5A8 /* amqp_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_api.c; sourceTree = "<group>"; };
 		2634790E16BBDEFC00DEE5A8 /* amqp_connection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = amqp_connection.c; sourceTree = "<group>"; };
@@ -87,26 +114,32 @@
 		2634791616BBDEFC00DEE5A8 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		2634791716BBDEFC00DEE5A8 /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
 		2634791816BBDEFC00DEE5A8 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		263AB63516BBE20A002FD970 /* AMQProtocolTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMQProtocolTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		263AB63716BBE20A002FD970 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		263AB63C16BBE20A002FD970 /* AMQProtocolTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AMQProtocolTests-Info.plist"; sourceTree = "<group>"; };
+		263AB64016BBE20A002FD970 /* AMQProtocolTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMQProtocolTests.h; sourceTree = "<group>"; };
+		263AB64116BBE20A002FD970 /* AMQProtocolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMQProtocolTests.m; sourceTree = "<group>"; };
+		263AB64316BBE20A002FD970 /* AMQProtocolTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMQProtocolTests-Prefix.pch"; sourceTree = "<group>"; };
 		2CE7304CE0E376A9DB0A44A4 /* AMQProtocolTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "AMQProtocolTests-Info.plist"; sourceTree = "<group>"; };
 		2CE730AA0E848A96E48EB5D2 /* AMQProtocolTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMQProtocolTests.h; sourceTree = "<group>"; };
 		2CE730F62417DC671003B906 /* AMQProtocol-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMQProtocol-Prefix.pch"; sourceTree = "<group>"; };
+		2CE731364781A18723B90DF6 /* AMQPUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMQPUtilities.m; sourceTree = "<group>"; };
+		2CE7392B1EF9A59D098F8EEF /* AMQPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMQPUtilities.h; sourceTree = "<group>"; };
 		2CE739953395D0194FE0EDA9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = README.md; sourceTree = "<group>"; };
 		2CE73A1A1C55B0FE64341DB5 /* AMQProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMQProtocol.h; sourceTree = "<group>"; };
 		2CE73A35F8B4A6073DDDC5D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CE73CD568BD863CA8830E8C /* libAMQProtocol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAMQProtocol.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CE73D139454270D4FE0B121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CE73D83AF3FA52768CAE471 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		2CE73F3890919DAE5FB56F53 /* AMQProtocolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMQProtocolTests.m; sourceTree = "<group>"; };
-		2CE73F517EC8FED291A07FE0 /* AMQProtocolTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMQProtocolTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE73F6FAB9043D1AFA9D036 /* AMQProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMQProtocol.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2CE735041D902A57A6B68EA6 /* Frameworks */ = {
+		263AB63116BBE20A002FD970 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE73C7A80713CF127155575 /* SenTestingKit.framework in Frameworks */,
+				263AB63616BBE20A002FD970 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +175,9 @@
 				2634790716BBDEFC00DEE5A8 /* AMQPQueue.m */,
 				2634790816BBDEFC00DEE5A8 /* AMQPRPCCall.h */,
 				2634790916BBDEFC00DEE5A8 /* AMQPRPCCall.m */,
-				2634790A16BBDEFC00DEE5A8 /* AMQPWrapper.h */,
 				2634790B16BBDEFC00DEE5A8 /* libRabbitMQ-C */,
+				2CE731364781A18723B90DF6 /* AMQPUtilities.m */,
+				2CE7392B1EF9A59D098F8EEF /* AMQPUtilities.h */,
 			);
 			path = AMQPWrapper;
 			sourceTree = "<group>";
@@ -168,9 +202,29 @@
 			path = "libRabbitMQ-C";
 			sourceTree = "<group>";
 		};
+		263AB63A16BBE20A002FD970 /* AMQProtocolTests */ = {
+			isa = PBXGroup;
+			children = (
+				263AB64016BBE20A002FD970 /* AMQProtocolTests.h */,
+				263AB64116BBE20A002FD970 /* AMQProtocolTests.m */,
+				263AB63B16BBE20A002FD970 /* Supporting Files */,
+			);
+			path = AMQProtocolTests;
+			sourceTree = "<group>";
+		};
+		263AB63B16BBE20A002FD970 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				263AB63C16BBE20A002FD970 /* AMQProtocolTests-Info.plist */,
+				263AB64316BBE20A002FD970 /* AMQProtocolTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2CE7342DE25002A743F6407D = {
 			isa = PBXGroup;
 			children = (
+				263AB63A16BBE20A002FD970 /* AMQProtocolTests */,
 				2CE73F09DD599195635F1C83 /* Products */,
 				2CE738674F8EADDCA89920CF /* Frameworks */,
 				2CE73A57DEC54671429C00B5 /* AMQProtocol */,
@@ -191,6 +245,7 @@
 			children = (
 				2CE73A35F8B4A6073DDDC5D8 /* Foundation.framework */,
 				2CE73D83AF3FA52768CAE471 /* SenTestingKit.framework */,
+				263AB63716BBE20A002FD970 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				2CE7304CE0E376A9DB0A44A4 /* AMQProtocolTests-Info.plist */,
-				2CE730D549052E9AADDE35F9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -230,7 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				2CE73CD568BD863CA8830E8C /* libAMQProtocol.a */,
-				2CE73F517EC8FED291A07FE0 /* AMQProtocolTests.octest */,
+				263AB63516BBE20A002FD970 /* AMQProtocolTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,23 +292,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2CE7390D5036437810001F20 /* AMQProtocolTests */ = {
+		263AB63416BBE20A002FD970 /* AMQProtocolTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CE7301AA72A43D1E543A474 /* Build configuration list for PBXNativeTarget "AMQProtocolTests" */;
+			buildConfigurationList = 263AB64416BBE20A002FD970 /* Build configuration list for PBXNativeTarget "AMQProtocolTests" */;
 			buildPhases = (
-				2CE73592FBCF839F11A75007 /* Sources */,
-				2CE735041D902A57A6B68EA6 /* Frameworks */,
-				2CE7338E0DE4D2B832C7B7AB /* Resources */,
-				2CE7313BD3EE9C43822B6F3D /* ShellScript */,
+				263AB63016BBE20A002FD970 /* Sources */,
+				263AB63116BBE20A002FD970 /* Frameworks */,
+				263AB63216BBE20A002FD970 /* Resources */,
+				263AB63316BBE20A002FD970 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2CE73A4CBFF613AF1E38871D /* PBXTargetDependency */,
+				263AB64816BBE230002FD970 /* PBXTargetDependency */,
 			);
 			name = AMQProtocolTests;
 			productName = AMQProtocolTests;
-			productReference = 2CE73F517EC8FED291A07FE0 /* AMQProtocolTests.octest */;
+			productReference = 263AB63516BBE20A002FD970 /* AMQProtocolTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		2CE73D4FE25C40F838C50CA1 /* AMQProtocol */ = {
@@ -268,6 +322,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				265A58B216BF65720046907F /* PBXTargetDependency */,
 			);
 			name = AMQProtocol;
 			productName = AMQProtocol;
@@ -292,24 +347,23 @@
 			projectRoot = "";
 			targets = (
 				2CE73D4FE25C40F838C50CA1 /* AMQProtocol */,
-				2CE7390D5036437810001F20 /* AMQProtocolTests */,
+				263AB63416BBE20A002FD970 /* AMQProtocolTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2CE7338E0DE4D2B832C7B7AB /* Resources */ = {
+		263AB63216BBE20A002FD970 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE732FE87B8C9ADC3940E3C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2CE7313BD3EE9C43822B6F3D /* ShellScript */ = {
+		263AB63316BBE20A002FD970 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,32 +379,34 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2CE732DA27E380CE6CE5E571 /* Sources */ = {
+		263AB63016BBE20A002FD970 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE73ADE89CA7C1C05FD035F /* AMQProtocol.m in Sources */,
-				2634791916BBDEFC00DEE5A8 /* AMQPChannel.m in Sources */,
-				2634791A16BBDEFC00DEE5A8 /* AMQPConnection.m in Sources */,
-				2634791B16BBDEFC00DEE5A8 /* AMQPConsumer.m in Sources */,
-				2634791C16BBDEFC00DEE5A8 /* AMQPConsumerThread.m in Sources */,
-				2634791D16BBDEFC00DEE5A8 /* AMQPExchange.m in Sources */,
-				2634791E16BBDEFC00DEE5A8 /* AMQPMessage.m in Sources */,
-				2634791F16BBDEFC00DEE5A8 /* AMQPObject.m in Sources */,
-				2634792016BBDEFC00DEE5A8 /* AMQPQueue.m in Sources */,
-				2634792116BBDEFC00DEE5A8 /* AMQPRPCCall.m in Sources */,
-				2634792216BBDEFC00DEE5A8 /* amqp_api.c in Sources */,
-				2634792316BBDEFC00DEE5A8 /* amqp_connection.c in Sources */,
-				2634792416BBDEFC00DEE5A8 /* amqp_debug.c in Sources */,
-				2634792516BBDEFC00DEE5A8 /* amqp_framing.c in Sources */,
-				2634792616BBDEFC00DEE5A8 /* amqp_mem.c in Sources */,
-				2634792716BBDEFC00DEE5A8 /* amqp_socket.c in Sources */,
-				2634792816BBDEFC00DEE5A8 /* amqp_table.c in Sources */,
-				2634792916BBDEFC00DEE5A8 /* socket.c in Sources */,
+				263AB66116BBE6A0002FD970 /* amqp_api.c in Sources */,
+				263AB66216BBE6A0002FD970 /* amqp_connection.c in Sources */,
+				263AB66316BBE6A0002FD970 /* amqp_debug.c in Sources */,
+				263AB66416BBE6A0002FD970 /* amqp_framing.c in Sources */,
+				263AB66516BBE6A0002FD970 /* amqp_mem.c in Sources */,
+				263AB66616BBE6A0002FD970 /* amqp_socket.c in Sources */,
+				263AB66716BBE6A0002FD970 /* amqp_table.c in Sources */,
+				263AB66816BBE6A0002FD970 /* socket.c in Sources */,
+				263AB65816BBE695002FD970 /* AMQPChannel.m in Sources */,
+				263AB65916BBE695002FD970 /* AMQPConsumer.m in Sources */,
+				263AB65A16BBE695002FD970 /* AMQPConsumerThread.m in Sources */,
+				263AB65B16BBE695002FD970 /* AMQPExchange.m in Sources */,
+				263AB65C16BBE695002FD970 /* AMQPMessage.m in Sources */,
+				263AB65D16BBE695002FD970 /* AMQPObject.m in Sources */,
+				263AB65E16BBE695002FD970 /* AMQPQueue.m in Sources */,
+				263AB65F16BBE695002FD970 /* AMQPRPCCall.m in Sources */,
+				263AB66016BBE695002FD970 /* AMQProtocol.m in Sources */,
+				263AB65716BBE64E002FD970 /* AMQPConnection.m in Sources */,
+				263AB64216BBE20A002FD970 /* AMQProtocolTests.m in Sources */,
+				2CE7353F4085B7CF37EE2712 /* AMQPUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2CE73592FBCF839F11A75007 /* Sources */ = {
+		2CE732DA27E380CE6CE5E571 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,25 +416,49 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2CE73A4CBFF613AF1E38871D /* PBXTargetDependency */ = {
+		263AB64816BBE230002FD970 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2CE73D4FE25C40F838C50CA1 /* AMQProtocol */;
-			targetProxy = 2CE738F6345626642CC012D1 /* PBXContainerItemProxy */;
+			targetProxy = 263AB64716BBE230002FD970 /* PBXContainerItemProxy */;
+		};
+		265A58B216BF65720046907F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 263AB63416BBE20A002FD970 /* AMQProtocolTests */;
+			targetProxy = 265A58B116BF65720046907F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		2CE730D549052E9AADDE35F9 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2CE73D139454270D4FE0B121 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
+		263AB64516BBE20A002FD970 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AMQProtocolTests/AMQProtocolTests-Prefix.pch";
+				INFOPLIST_FILE = "AMQProtocolTests/AMQProtocolTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		263AB64616BBE20A002FD970 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AMQProtocolTests/AMQProtocolTests-Prefix.pch";
+				INFOPLIST_FILE = "AMQProtocolTests/AMQProtocolTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
 		2CE739861DA5A70DEC3174B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,21 +471,6 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
-		};
-		2CE73AACA7B7465E6FFC0CC5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AMQProtocol/AMQProtocol-Prefix.pch";
-				INFOPLIST_FILE = "AMQProtocolTests/AMQProtocolTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
 		};
 		2CE73B4081FFB85340E5C3AC /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -440,21 +505,6 @@
 			};
 			name = Debug;
 		};
-		2CE73DC1D284ACBC54956779 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AMQProtocol/AMQProtocol-Prefix.pch";
-				INFOPLIST_FILE = "AMQProtocolTests/AMQProtocolTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 		2CE73DE41A8E91DD20FD4E4C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -485,11 +535,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2CE7301AA72A43D1E543A474 /* Build configuration list for PBXNativeTarget "AMQProtocolTests" */ = {
+		263AB64416BBE20A002FD970 /* Build configuration list for PBXNativeTarget "AMQProtocolTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2CE73DC1D284ACBC54956779 /* Release */,
-				2CE73AACA7B7465E6FFC0CC5 /* Debug */,
+				263AB64516BBE20A002FD970 /* Release */,
+				263AB64616BBE20A002FD970 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

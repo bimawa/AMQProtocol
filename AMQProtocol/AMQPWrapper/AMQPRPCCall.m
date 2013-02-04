@@ -5,8 +5,8 @@
 //
 
 
-#import "AMQPWrapper.h"
-#import "amqp_framing.h"
+#import "AMQPRPCCall.h"
+
 @implementation AMQPRPCCall {
     amqp_basic_properties_t props;
     AMQPConsumer *consumer;
