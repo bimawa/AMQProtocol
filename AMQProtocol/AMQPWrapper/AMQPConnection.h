@@ -14,7 +14,7 @@
 
 @interface AMQPConnection : AMQPObject
 {
-	amqp_connection_state_t connection;
+	__block amqp_connection_state_t connection;
 	__block int socketFD;
     AMQPUtilities *utilities;
 	unsigned int nextChannel;

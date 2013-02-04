@@ -22,6 +22,13 @@
         __block ERRORCODE isCompliete = ERRORCODE_NORESPONSE;
         __block NSError *errorInformer = *error;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (theChannel == nil) {
+                NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+                [errorDetail setValue:@"Chanel has Null!" forKey:NSLocalizedDescriptionKey];
+                errorInformer = [NSError errorWithDomain:NSStringFromClass([self class]) code:-5 userInfo:errorDetail];
+                isCompliete = ERRORCODE_HASERROR;
+                return;
+            }
             amqp_exchange_declare(theChannel.connection.internalConnection, theChannel.internalChannel, amqp_cstring_bytes([theName UTF8String]), amqp_cstring_bytes([theType UTF8String]), passive, durable, autoDelete, AMQP_EMPTY_TABLE);
             if ([channel.connection checkLastOperation:@"Failed to declare exchange"]) {
                 NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
@@ -32,7 +39,7 @@
             }
             exchange = amqp_bytes_malloc_dup(amqp_cstring_bytes([theName UTF8String]));
             channel = theChannel;
-            isCompliete =ERRORCODE_NORMAL;
+            isCompliete = ERRORCODE_NORMAL;
             return;
         });
         NSError *timerError=nil;

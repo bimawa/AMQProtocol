@@ -57,13 +57,15 @@
         return;
     });
     NSError *timerError=nil;
-    [utilities waitingRespondsInSec:1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:10 error:&timerError];
+    [utilities waitingRespondsInSec:1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:3 error:&timerError];
     if (isCompliete==ERRORCODE_HASERROR){
         if (errorInformer== nil){
             *error=timerError;
         }else{
             *error=errorInformer;
         }
+    }else{
+        amqp_set_sockfd(connection, socketFD);
     }
 
 }
@@ -120,6 +122,7 @@
             *error=errorInformer;
         }
     }
+
 }
 
 - (BOOL)checkLastOperation:(NSString*)context

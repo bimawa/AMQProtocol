@@ -16,11 +16,11 @@
     while(*key== (ERRORCODE *) ERRORCODE_NORESPONSE){
         if (tryCounter==countTry){
             *key= (ERRORCODE *) ERRORCODE_HASERROR;
-            /*if (*error==nil){
+            if (*error==nil){
                 NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
                 [errorDetail setValue:@"Connection refuse" forKey:NSLocalizedDescriptionKey];
                 *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-16 userInfo:errorDetail];
-            }*/
+            }
             return;
         }else{
             countTry++;
