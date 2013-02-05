@@ -11,7 +11,9 @@
 #import "AMQPChannel.h"
 #import "AMQPExchange.h"
 
-@implementation AMQPQueue
+@implementation AMQPQueue {
+    AMQPUtilities *utilities;
+}
 
 @synthesize internalQueue = queueName;
 
@@ -19,6 +21,7 @@
 {
 	if(self = [super init])
 	{
+        utilities = [AMQPUtilities new];
         __block int isReadyData=0;
         __block amqp_queue_declare_ok_t *declaration;
             declaration = amqp_queue_declare((theChannel).connection.internalConnection, (theChannel).internalChannel, amqp_cstring_bytes([theName UTF8String]), passive, durable, exclusive, autoDelete, AMQP_EMPTY_TABLE);
@@ -41,7 +44,6 @@
         queueName = amqp_bytes_malloc_dup(amqp_cstring_bytes([theName UTF8String]));
 		channel = theChannel;
 	}
-	
 	return self;
 }
 - (void)dealloc

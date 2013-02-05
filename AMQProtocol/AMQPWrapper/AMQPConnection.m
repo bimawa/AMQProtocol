@@ -52,7 +52,7 @@
         return;
     });
     NSError *timerError=nil;
-    [utilities waitingRespondsInSec:1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:3 error:&timerError];
+    [utilities waitingRespondsInSec:.1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:10 error:&timerError];
     if (isCompliete==ERRORCODE_HASERROR){
         if (errorInformer== nil){
             *error=timerError;
@@ -80,7 +80,7 @@
         return;
     });
     NSError *timerError=nil;
-    [utilities waitingRespondsInSec:1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:3 error:&timerError];
+    [utilities waitingRespondsInSec:.1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:10 error:&timerError];
     if (isCompliete==ERRORCODE_HASERROR){
         if (errorInformer== nil){
             *error=timerError;
@@ -109,7 +109,7 @@
         return;
     });
     NSError *timerError=nil;
-    [utilities waitingRespondsInSec:1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:3 error:&timerError];
+    [utilities waitingRespondsInSec:.1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:10 error:&timerError];
     if (isCompliete==ERRORCODE_HASERROR){
         if (errorInformer== nil){
             *error=timerError;
