@@ -4,13 +4,8 @@
 // To change the template use AppCode | Preferences | File Templates.
 //
 
-#import <sys/socket.h>
 #import "AMQPConnection.h"
-
-#import "amqp.h"
 #import "amqp_framing.h"
-#import "unistd.h"
-
 #import "AMQPChannel.h"
 
 @implementation AMQPConnection

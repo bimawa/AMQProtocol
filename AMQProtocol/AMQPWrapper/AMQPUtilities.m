@@ -11,7 +11,7 @@
 @implementation AMQPUtilities {
 }
 
-- (void)waitingRespondsInSec:(NSTimeInterval)sec forKey:(ERRORCODE **)key exitAfterTryCounter:(NSInteger)tryCounter error:(NSError **)error {
+- (void)waitingRespondsInSec:(NSTimeInterval)sec forKey:(ERRORCODE **)key exitAfterTryCounter:(NSInteger)tryCounter error:(NSError **)error{
     NSInteger countTry=0;
     while(*key== (ERRORCODE *) ERRORCODE_NORESPONSE){
         if (tryCounter==countTry){

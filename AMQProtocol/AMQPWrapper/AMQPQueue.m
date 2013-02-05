@@ -21,8 +21,6 @@
 	{
         __block int isReadyData=0;
         __block amqp_queue_declare_ok_t *declaration;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-
             declaration = amqp_queue_declare((theChannel).connection.internalConnection, (theChannel).internalChannel, amqp_cstring_bytes([theName UTF8String]), passive, durable, exclusive, autoDelete, AMQP_EMPTY_TABLE);
             if([channel.connection checkLastOperation:@"Failed to declare queue"]||declaration==nil){
                 NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
@@ -30,8 +28,6 @@
                 *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-8 userInfo:errorDetail];
 
             }
-
-        });
 
 		queueName = amqp_bytes_malloc_dup(declaration->queue);
 		channel =theChannel;
