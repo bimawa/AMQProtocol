@@ -135,16 +135,14 @@
 
 - (AMQPChannel*)openChannel
 {
-    AMQPChannel *channel = [[AMQPChannel alloc] init];
-	NSError *error=nil;
-	[channel openChannel:nextChannel onConnection:self error:&error];
-	if (error!=nil){
-		NSLog(@"%@",error);
-        nextChannel++;
-		return nil;
-	}
-	nextChannel++;
-	return channel;
+        AMQPChannel *channel = [[AMQPChannel alloc] init];
+        NSError *error=nil;
+        [channel openChannel:nextChannel++ onConnection:self error:&error];
+        if (error!=nil){
+            NSLog(@"%@",error);
+            return nil;
+        }
+        return channel;
 }
 
 @end
