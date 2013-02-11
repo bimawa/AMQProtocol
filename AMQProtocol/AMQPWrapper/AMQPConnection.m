@@ -94,7 +94,7 @@
 
     __block ERRORCODE isCompliete =ERRORCODE_NORESPONSE;
     __block NSError *errorInformer=nil;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         amqp_rpc_reply_t reply = amqp_connection_close(connection, AMQP_REPLY_SUCCESS);
         if(reply.reply_type != AMQP_RESPONSE_NORMAL)
         {
@@ -102,12 +102,11 @@
             [errorDetail setValue:[NSString stringWithFormat:@"Unable to disconnect from host: %@", [self errorDescriptionForReply:reply]] forKey:NSLocalizedDescriptionKey];
             errorInformer = [NSError errorWithDomain:NSStringFromClass([self class]) code:-2 userInfo:errorDetail];
             isCompliete =ERRORCODE_HASERROR;
-            return;
+        }else{
+            close(socketFD);
+            isCompliete =ERRORCODE_NORMAL;
         }
-        close(socketFD);
-        isCompliete =ERRORCODE_NORMAL;
-        return;
-    });
+//    });
     NSError *timerError=nil;
     [utilities waitingRespondsInSec:.1 forKey:(ERRORCODE **) &isCompliete exitAfterTryCounter:10 error:&timerError];
     if (isCompliete==ERRORCODE_HASERROR){
