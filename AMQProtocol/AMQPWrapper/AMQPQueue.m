@@ -24,14 +24,13 @@
         utilities = [AMQPUtilities new];
         __block int isReadyData=0;
         __block amqp_queue_declare_ok_t *declaration;
-            declaration = amqp_queue_declare((theChannel).connection.internalConnection, (theChannel).internalChannel, amqp_cstring_bytes([theName UTF8String]), passive, durable, exclusive, autoDelete, AMQP_EMPTY_TABLE);
-            if([channel.connection checkLastOperation:@"Failed to declare queue"]||declaration==nil){
-                NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-                [errorDetail setValue:@"Failed to declare queue" forKey:NSLocalizedDescriptionKey];
-                *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-8 userInfo:errorDetail];
-
-            }
-
+        declaration = amqp_queue_declare((theChannel).connection.internalConnection, (theChannel).internalChannel, amqp_cstring_bytes([theName UTF8String]), passive, durable, exclusive, autoDelete, AMQP_EMPTY_TABLE);
+        if([channel.connection checkLastOperation:@"Failed to declare queue"]||declaration==nil){
+            NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+            [errorDetail setValue:@"Failed to declare queue" forKey:NSLocalizedDescriptionKey];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-8 userInfo:errorDetail];
+            return nil;
+        }
 		queueName = amqp_bytes_malloc_dup(declaration->queue);
 		channel =theChannel;
 	}
