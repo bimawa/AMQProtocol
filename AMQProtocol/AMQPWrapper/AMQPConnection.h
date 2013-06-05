@@ -17,9 +17,10 @@
 	__block amqp_connection_state_t connection;
 	__block int socketFD;
     AMQPUtilities *utilities;
-	unsigned int nextChannel;
+	uint nextChannel;
+    NSLock *lock;
+
 }
-@property (readonly) uint nextChannel_;
 @property (readonly) amqp_connection_state_t internalConnection;
 
 - (id)init;
@@ -29,8 +30,8 @@
 - (void)loginAsUser:(NSString *)username withPasswort:(NSString *)password onVHost:(NSString *)vhost error:(NSError**)error;
 - (void)disconnectError:(NSError**)error; // all channels have to be closed before closing the connection
 
-- (BOOL)checkLastOperation:(NSString*)context;
+- (BOOL)checkLastOperation:(NSString *)context;
 
-- (AMQPChannel*)openChannel;
+- (AMQPChannel *)openChannelError:(NSError **)errorOpenChannel;
 
 @end

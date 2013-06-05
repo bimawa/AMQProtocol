@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <assert.h>
+#include <sys/fcntl.h>
 
 #include "amqp.h"
 #include "amqp_framing.h"
@@ -135,7 +136,7 @@ amqp_boolean_t amqp_data_in_buffer(amqp_connection_state_t state) {
   return (state->sock_inbound_offset < state->sock_inbound_limit);
 }
 
-static int wait_frame_inner(amqp_connection_state_t state, amqp_frame_t *decoded_frame)
+static int wait_frame_inner(amqp_connection_state_t state, amqp_frame_t *decoded_frame, int timeOut)
 {
     while (1) {
         int result;
@@ -153,6 +154,54 @@ static int wait_frame_inner(amqp_connection_state_t state, amqp_frame_t *decoded
             /* Incomplete or ignored frame. Keep processing input. */
             assert(result != 0);
         }
+
+        if(timeOut > 0){
+            /*fd_set rfds;
+            struct timeval tv;
+            int retval;
+            int flags;
+            flags = fcntl(state->sockfd, F_GETFL, 0);
+            fcntl(state->sockfd, F_SETFL, flags | O_NONBLOCK);
+            *//* Watch stdin (fd 0) to see when it has input. *//*
+
+            fd_set read_flags;
+            FD_ZERO(&read_flags);
+            FD_SET(amqp_get_sockfd(state->sockfd), &read_flags);
+
+            *//* Wait up to five seconds. *//*
+            tv.tv_sec = 15;
+            tv.tv_usec = 0;
+
+            retval = select(state->sockfd, &rfds, NULL, NULL, &tv);
+            if (!retval){
+                return -ERROR_CONNECTION_CLOSED;
+            }*/
+
+            int flags;
+            int ret;
+
+            int sock = state->sockfd;
+//            flags = fcntl(sock, F_GETFL, 0);
+//            fcntl(sock, F_SETFL, flags | O_NONBLOCK);
+            if (!amqp_frames_enqueued(state) && !amqp_data_in_buffer(state)) {
+                /* Watch socket fd to see when it has input. */
+                fd_set read_flags;
+                FD_ZERO(&read_flags);
+                FD_SET(amqp_get_sockfd(state), &read_flags);
+                struct timeval timeout;
+
+                /* Wait upto a second. */
+                timeout.tv_sec = timeOut;
+                timeout.tv_usec = 0;
+
+                ret = select(sock+1, &read_flags, NULL, NULL, &timeout);
+                if (!ret){
+                    return -ERROR_CONNECTION_CLOSED;
+                }
+            }
+        }
+
+
         result = recv(state->sockfd, state->sock_inbound_buffer.bytes,state->sock_inbound_buffer.len, 0);
         if (result <= 0) {
           if (result == 0)
@@ -166,7 +215,7 @@ static int wait_frame_inner(amqp_connection_state_t state, amqp_frame_t *decoded
   }
 }
 
-int amqp_simple_wait_frame(amqp_connection_state_t state, amqp_frame_t *decoded_frame)
+int amqp_simple_wait_frame(amqp_connection_state_t state, amqp_frame_t *decoded_frame, int timeOut)
 {
   if (state->first_queued_frame != NULL) {
     amqp_frame_t *f = (amqp_frame_t *) state->first_queued_frame->data;
@@ -177,17 +226,15 @@ int amqp_simple_wait_frame(amqp_connection_state_t state, amqp_frame_t *decoded_
     *decoded_frame = *f;
     return 0;
   } else {
-    return wait_frame_inner(state, decoded_frame);
+    return wait_frame_inner(state, decoded_frame, timeOut);
   }
 }
 
-int amqp_simple_wait_method(amqp_connection_state_t state,
-			    amqp_channel_t expected_channel,
-			    amqp_method_number_t expected_method,
-			    amqp_method_t *output)
+int amqp_simple_wait_method(amqp_connection_state_t state, amqp_channel_t expected_channel, amqp_method_number_t expected_method,
+        amqp_method_t *output)
 {
   amqp_frame_t frame;
-  int res = amqp_simple_wait_frame(state, &frame);
+  int res = amqp_simple_wait_frame(state, &frame, 0);
   if (res < 0)
     return res;
 
@@ -254,8 +301,9 @@ amqp_rpc_reply_t amqp_simple_rpc(amqp_connection_state_t state,
   {
       amqp_frame_t frame;
 
-  retry:
-    status = wait_frame_inner(state, &frame);
+      retry:
+  //INFO: Timer for C Library
+  status = wait_frame_inner(state, &frame, 15);
     if (status < 0) {
       result.reply_type = AMQP_RESPONSE_LIBRARY_EXCEPTION;
       result.library_error = -status;
@@ -325,8 +373,7 @@ static int amqp_login_inner(amqp_connection_state_t state,
 
   amqp_send_header(state);
 
-  res = amqp_simple_wait_method(state, 0, AMQP_CONNECTION_START_METHOD,
-				&method);
+  res = amqp_simple_wait_method(state, 0, AMQP_CONNECTION_START_METHOD, &method);
   if (res < 0)
     return res;
 
@@ -360,8 +407,7 @@ static int amqp_login_inner(amqp_connection_state_t state,
 
   amqp_release_buffers(state);
 
-  res = amqp_simple_wait_method(state, 0, AMQP_CONNECTION_TUNE_METHOD,
-				&method);
+  res = amqp_simple_wait_method(state, 0, AMQP_CONNECTION_TUNE_METHOD, &method);
   if (res < 0)
     return res;
 

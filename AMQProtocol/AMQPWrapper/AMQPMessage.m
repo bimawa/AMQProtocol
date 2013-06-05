@@ -6,7 +6,7 @@
 
 
 #import "AMQPMessage.h"
-
+#import "AMQPObject.h"
 #import "amqp.h"
 #import "amqp_framing.h"
 
@@ -40,20 +40,25 @@
 @synthesize read;
 @synthesize receivedAt;
 
-+ (AMQPMessage*)messageFromBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t*)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t*)theMessageProperties receivedAt:(NSDate*)receiveTimestamp
+@synthesize rawBody;
+
++ (AMQPMessage *)messageFromBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t *)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t *)theMessageProperties receivedAt:(NSDate *)receiveTimestamp
 {
-	AMQPMessage *message = [[AMQPMessage alloc] initWithBody:theBody withDeliveryProperties:theDeliveryProperties withMessageProperties:theMessageProperties receivedAt:receiveTimestamp];
+	AMQPMessage *message = [[AMQPMessage alloc]
+            initWithBody:theBody withDeliveryProperties:theDeliveryProperties withMessageProperties:theMessageProperties
+              receivedAt:receiveTimestamp];
 	
 	return message;
 }
 
-- (id)initWithBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t*)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t*)theMessageProperties receivedAt:(NSDate*)receiveTimestamp
+- (id)initWithBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t *)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t *)theMessageProperties receivedAt:(NSDate *)receiveTimestamp
 {
 	if(!theDeliveryProperties || !theMessageProperties) { return nil; }
 	
 	if(self = [super init]) {
-
         body = AMQP_BYTES_TO_NSSTRING(theBody);
+
+        rawBody = [NSData dataWithBytes:theBody.bytes length:theBody.len];
         //body=[[NSString alloc] initWithBytes:theBody.bytes length:x.len encoding:NSWindowsCP1251StringEncoding];
         consumerTag = AMQP_BYTES_TO_NSSTRING(theDeliveryProperties->consumer_tag);
         deliveryTag = theDeliveryProperties->delivery_tag;
@@ -87,7 +92,7 @@
 	if(self = [super init])
 	{
 		body = [theMessage.body copy];
-		
+        rawBody = [theMessage.rawBody copy];
 		consumerTag			= [theMessage.consumerTag copy];
 		deliveryTag			= theMessage.deliveryTag;
 		redelivered			= theMessage.redelivered;

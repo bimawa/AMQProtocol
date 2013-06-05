@@ -24,7 +24,10 @@
 
 @property (strong) NSObject<AMQPConsumerThreadDelegate> *delegate;
 
-- (id)initWithConsumer:(AMQPConsumer *)theConsumer delegate:(NSObject <AMQPConsumerThreadDelegate> *)deleGate nameThread:(NSString *)name;
+- (id)initWithConsumer:(AMQPConsumer *)theConsumer delegate:(NSObject <AMQPConsumerThreadDelegate> *)deleGate nameThread:(NSString *)name persistentListen:(BOOL)isLoop;
+
+- (void)closeConsumer;
+
 - (void)main;
 
 @end

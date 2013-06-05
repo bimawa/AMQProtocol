@@ -262,6 +262,19 @@ int amqp_basic_ack(amqp_connection_state_t state,
   return 0;
 }
 
+amqp_basic_qos_ok_t *amqp_basic_qos(amqp_connection_state_t state,
+        amqp_channel_t channel,
+        long size,
+        short count,
+        amqp_boolean_t global)
+{
+    state->most_recent_api_result =
+            AMQP_SIMPLE_RPC(state, channel, BASIC, QOS, QOS_OK,
+            amqp_basic_qos_t,
+            size, count, global);
+    return RPC_REPLY(amqp_queue_purge_ok_t);
+}
+
 amqp_queue_purge_ok_t *amqp_queue_purge(amqp_connection_state_t state,
 					amqp_channel_t channel,
 					amqp_bytes_t queue,
@@ -320,3 +333,4 @@ amqp_rpc_reply_t amqp_get_rpc_reply(amqp_connection_state_t state)
 {
   return state->most_recent_api_result;
 }
+

@@ -18,13 +18,19 @@
 	amqp_channel_t channel;
 	AMQPConnection *connection;
     AMQPUtilities *utilities;
+    BOOL isOpen;
+
 }
 
 @property (readonly) amqp_channel_t internalChannel;
 @property (readonly, retain) AMQPConnection *connection;
 
+@property(nonatomic) BOOL isOpen;
+
 - (id)init;
 - (void)openChannel:(unsigned int)theChannel onConnection:(AMQPConnection *)theConnection error:(NSError**)error;
+
+- (void)setupBasicQOS;
+
 - (void)close;
-+(void)closeChanelByNumber:(uint)channelNum connection:(AMQPConnection *)connect;
 @end

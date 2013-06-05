@@ -7,6 +7,7 @@
 
 #import "AMQPRPCCall.h"
 
+
 @implementation AMQPRPCCall {
     amqp_basic_properties_t props;
     AMQPConsumer *consumer;
@@ -23,23 +24,19 @@
         *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-14 userInfo:errorDetail];
         return nil;
     }
-    AMQPChannel *channel= [connection openChannel];
-    if (channel==nil) {
-        NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:@"Failed to declare queue" forKey:NSLocalizedDescriptionKey];
-        *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-8 userInfo:errorDetail];
+    AMQPChannel *channel= [connection openChannelError:error];
+    if (*error!=nil) {
+        NSLog(@"TCLib>> Filed declare queue, channel open error:%@",*error);
         return nil;
     }
-    NSError *queueAndConsumerError =nil;
-    AMQPQueue *queue = [[AMQPQueue alloc] initWithName:@"" onChannel:channel isPassive:NO isExclusive:YES isDurable:NO getsAutoDeleted:YES error:&queueAndConsumerError];
-    exchange = [[AMQPExchange alloc] initExchangeWithName:@"" onChannel:channel];
-    consumer= [[AMQPConsumer alloc] initForQueue:queue onChannel:&channel useAcknowledgements:NO isExclusive:YES receiveLocalMessages:YES error:&queueAndConsumerError deepLoop:5];
-    if (queueAndConsumerError ==nil){
-        queueForReplyTo=queue;
-        corr_id=[[NSNumber numberWithInt:arc4random() % 1000] stringValue];
-    }else{
-        *error= queueAndConsumerError;
-    }
+    AMQPQueue *queue = [[AMQPQueue alloc] initWithName:@"" onChannel:channel isPassive:NO isExclusive:YES isDurable:NO getsAutoDeleted:YES error:error];
+    if(*error!= nil)return nil;
+    exchange = [[AMQPExchange alloc] initExchangeWithName:@"" onChannel:channel error:error];
+    if(*error!= nil)return nil;
+    consumer= [[AMQPConsumer alloc] initForQueue:queue onChannel:&channel useAcknowledgements:NO isExclusive:YES receiveLocalMessages:YES error:error deepLoop:5];
+    if (*error!=nil)return nil;
+    queueForReplyTo=queue;
+    corr_id=[[NSNumber numberWithInt:arc4random() % 1000] stringValue];
     return self;
 }
 
@@ -61,9 +58,10 @@
     [exchange publishMessage:body usingRoutingKey:rpcFunctionName propertiesMessage:props mandatory:YES immediate:NO error:&error];
     if(error!=nil) {
         //TODO: parse error
-        NSLog(@"Excepshen RPC!!!%@", [error localizedDescription]);
+        NSLog(@"TCLib>> Excepshen RPC!!!%@", [error localizedDescription]);
     }
-    AMQPMessage *message=[consumer pop];
+    //INFO: Added timer on socket
+    AMQPMessage *message= [consumer popWithTimer:15];
     return message;
 }
 @end

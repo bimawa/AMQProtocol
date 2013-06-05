@@ -295,12 +295,11 @@ extern int amqp_send_header_to(amqp_connection_state_t state,
 
 extern amqp_boolean_t amqp_frames_enqueued(amqp_connection_state_t state);
 
-extern int amqp_simple_wait_frame(amqp_connection_state_t state, amqp_frame_t *decoded_frame);
+extern int amqp_simple_wait_frame(amqp_connection_state_t state, amqp_frame_t *decoded_frame, int timeOut);
 
-extern int amqp_simple_wait_method(amqp_connection_state_t state,
-				   amqp_channel_t expected_channel,
-				   amqp_method_number_t expected_method,
-				   amqp_method_t *output);
+extern int amqp_simple_wait_method
+        (amqp_connection_state_t state, amqp_channel_t expected_channel, amqp_method_number_t expected_method,
+                amqp_method_t *output);
 
 extern int amqp_send_method(amqp_connection_state_t state,
 			    amqp_channel_t channel,
@@ -411,6 +410,12 @@ extern struct amqp_basic_consume_ok_t_ *amqp_basic_consume(amqp_connection_state
 							   amqp_boolean_t no_local,
 							   amqp_boolean_t no_ack,
 							   amqp_boolean_t exclusive);
+
+extern struct amqp_basic_qos_ok_t_ *amqp_basic_qos(amqp_connection_state_t state,
+        amqp_channel_t channel,
+        long size,
+        short count,
+        amqp_boolean_t global);
 
 extern int amqp_basic_ack(amqp_connection_state_t state,
 			  amqp_channel_t channel,

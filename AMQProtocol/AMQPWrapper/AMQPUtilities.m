@@ -6,15 +6,19 @@
 
 
 #import "AMQPUtilities.h"
+#define tryCountConnection 1000 //Try times to connection
+#define timeoutConnection .01 //Timeout sec to connection
 
 
 @implementation AMQPUtilities {
 }
 
-- (void)waitingRespondsInSec:(NSTimeInterval)sec forKey:(ERRORCODE **)key exitAfterTryCounter:(NSInteger)tryCounter error:(NSError **)error{
+- (void)waitingRespondsInForKey:(ERRORCODE **)key error:(NSError **)error
+{
     NSInteger countTry=0;
+
     while(*key== (ERRORCODE *) ERRORCODE_NORESPONSE){
-        if (tryCounter==countTry){
+        if (tryCountConnection==countTry){
             *key= (ERRORCODE *) ERRORCODE_HASERROR;
             if (*error==nil){
                 NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
@@ -24,7 +28,7 @@
             return;
         }else{
             countTry++;
-            [NSThread sleepForTimeInterval:sec];
+            [NSThread sleepForTimeInterval:timeoutConnection];
         }
 
     }

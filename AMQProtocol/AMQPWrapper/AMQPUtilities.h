@@ -15,6 +15,6 @@ typedef enum{
     ERRORCODE_NORMAL
 }ERRORCODE;
 
-- (void)waitingRespondsInSec:(NSTimeInterval)sec forKey:(ERRORCODE **)key exitAfterTryCounter:(NSInteger)tryCounter error:(NSError **)error;
+- (void)waitingRespondsInForKey:(ERRORCODE **)key error:(NSError **)error;
 
 @end

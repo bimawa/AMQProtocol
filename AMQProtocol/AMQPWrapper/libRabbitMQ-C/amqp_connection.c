@@ -16,10 +16,10 @@
 
 #include "socket.h"
 #pragma GCC diagnostic ignored "-Wwarning-flag"
+#define DEBUG_MODE 1
 #define INITIAL_FRAME_POOL_PAGE_SIZE 65536
 #define INITIAL_DECODING_POOL_PAGE_SIZE 131072
 #define INITIAL_INBOUND_SOCK_BUFFER_SIZE 131072
-
 #define ENFORCE_STATE(statevec, statenum)				\
   {									\
     amqp_connection_state_t _check_state = (statevec);			\
@@ -198,7 +198,7 @@ int amqp_handle_input(amqp_connection_state_t state,
     case CONNECTION_STATE_WAITING_FOR_BODY: {
       int frame_type = D_8(state->inbound_buffer, 0);
 
-#if 0
+#if DEBUG_MODE
       printf("recving:\n");
       amqp_dump(state->inbound_buffer.bytes, state->target_size);
 #endif
@@ -358,7 +358,7 @@ static int inner_send_frame(amqp_connection_state_t state,
     E_8(state->outbound_buffer, *payload_len + HEADER_SIZE, AMQP_FRAME_END);
   }
 
-#if 0
+#if DEBUG_MODE
   if (separate_body) {
     printf("sending body frame (header):\n");
     amqp_dump(state->outbound_buffer.bytes, HEADER_SIZE);

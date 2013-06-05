@@ -12,7 +12,7 @@
 
 @protocol AMQPConsumerThreadDelegate
 
-- (void)amqpConsumerThreadReceivedNewMessage:(AMQPMessage*)theMessage;
+-(void)amqpConsumerThreadReceivedNewMessage:(AMQPMessage*)theMessage;
 -(void)amqpConsumerThreadLoseConnection;
 
 @end

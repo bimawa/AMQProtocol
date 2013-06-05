@@ -6,18 +6,15 @@
 
 
 #import <UIKit/UIKit.h>
-
 #import "amqp.h"
 #import "amqp_framing.h"
-
-#import "AMQPObject.h"
 
 @class AMQPConsumer;
 
 @interface AMQPMessage : NSObject
 {
 	NSString *body;
-	
+    NSData *rawBody;
 	// from properties
 	NSString *contentType;
 	NSString *contentEncoding;
@@ -71,9 +68,11 @@
 @property BOOL read;
 @property (readonly) NSDate *receivedAt;
 
-+ (AMQPMessage*)messageFromBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t*)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t*)theMessageProperties receivedAt:(NSDate*)receiveTimestamp;
+@property(nonatomic, strong) NSData *rawBody;
 
-- (id)initWithBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t*)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t*)theMessageProperties receivedAt:(NSDate*)receiveTimestamp;
++ (AMQPMessage *)messageFromBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t *)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t *)theMessageProperties receivedAt:(NSDate *)receiveTimestamp;
+
+- (id)initWithBody:(amqp_bytes_t)theBody withDeliveryProperties:(amqp_basic_deliver_t *)theDeliveryProperties withMessageProperties:(amqp_basic_properties_t *)theMessageProperties receivedAt:(NSDate *)receiveTimestamp;
 - (id)initWithAMQPMessage:(AMQPMessage*)theMessage;
 
 @end

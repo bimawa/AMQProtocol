@@ -26,8 +26,11 @@
 @property (readonly) AMQPQueue *queue;
 
 - (id)initForQueue:(AMQPQueue *)theQueue onChannel:(__strong AMQPChannel **)theChannel useAcknowledgements:(BOOL)ack isExclusive:(BOOL)exclusive receiveLocalMessages:(BOOL)local error:(NSError **)error deepLoop:(int)deep;
+
+- (void)closeConsumer;
+
 - (void)dealloc;
 
-- (AMQPMessage*)pop;
+- (AMQPMessage *)popWithTimer:(NSInteger)timeOut;
 
 @end

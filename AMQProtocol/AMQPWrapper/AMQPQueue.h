@@ -21,8 +21,13 @@
 @property (readonly) amqp_bytes_t internalQueue;
 
 - (id)initWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel isPassive:(BOOL)passive isExclusive:(BOOL)exclusive isDurable:(BOOL)durable getsAutoDeleted:(BOOL)autoDelete error:(NSError**)error;
-- (id)initWithName:(NSString*)theName onChannel:(AMQPChannel*)theChannel;//No declare
+
+- (id)initWithName:(NSString *)theName onChannel:(AMQPChannel *)theChannel error:(NSError **)error;
+
+//No declare
 - (void)dealloc;
+
+- (BOOL)purgeNoWait:(BOOL)noWait error:(NSError **)error;
 
 - (BOOL)bindToExchange:(AMQPExchange*)theExchange withKey:(NSString*)bindingKey error:(NSError**)error;
 - (BOOL)unbindFromExchange:(AMQPExchange*)theExchange withKey:(NSString*)bindingKey error:(NSError**)error;
